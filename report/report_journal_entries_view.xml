@@ -7,53 +7,34 @@
 			<t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
                 <div class="page">
-                    <br/><br/>
                     <div class="oe_structure"/>
-                        <div>
-                            <h3 class="text-center mb32">
-                                <strong>Journal Entry</strong>
-                            </h3>
-                        </div>
-                    <br/>
 
-                <div class="row" id="journal_information">
-                    <div class="col-8">
-                        <div>
-                            <strong>Journal Entry :</strong>
-                            <p t-field="o.name"/>
-                        </div>
+                    <div id="journal_information">
+                        <table style="border-collapse: collapse;width: 100%;;border:1px solid black" class="table table-condensed">
+                                <tr>
+                                    <td><strong>Diario : </strong><span t-field="o.journal_id"/> </td>
+                                    <td><strong>Entrada : </strong><span t-field="o.name"/> </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><strong>Fecha :</strong><span t-field="o.date"/></td>
+                                    <td><strong>Referencia :</strong><span t-field="o.ref"/></td>
+                                </tr>
+                        </table>
+                    </div>
 
-                        <div class="text-left">
-                            <strong>Date :</strong>
-                            <p t-field="o.date"/>
-                        </div>
-                    </div>  
-               
-                    <div class="col-8">
-                        <div>
-                            <strong>Journal :</strong>
-                            <p t-field="o.journal_id"/>
-                        </div>
-                        <div class="text-left">
-                            <strong>Reference :</strong>
-                            <p t-field="o.ref"/>
-                        </div>
-                    </div>  
-                </div>
-               
-
-               <br/><br/>
-                <table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
+               <br/>
+                <table style="width: 100%;border:1px solid black" class="table table-sm">
                     <thead>
                         <tr>
-                            <th>Partner</th>
-                            <th>Account</th>
-                            <th>Label</th>
-                            <th>Due Date</th>
-                            <th>Analytic Account</th>
-                            <th>Taxes(%)</th>
-                            <th>Debit</th>
-                            <th>Credit</th>
+                            <th>Contacto</th>
+                            <th>Cuenta</th>
+                            <th>Descripción</th>
+                            <!--th>Due Date</th-->
+                            <th>Cuenta Analitica</th>
+                            <th>Impuesto(%)</th>
+                            <th>Debito</th>
+                            <th>Credito</th>
                         </tr>
                     </thead>  
                     <tbody class="consumed_tbody">
@@ -62,39 +43,35 @@
                         <t t-foreach="o.line_ids" t-as="line">    
                         <tr>
                             <td>
-                                <span t-field="line.partner_id" />
+                                <span t-field="line.partner_id"/>
                             </td>
                             <td>
-                                <span t-field="line.account_id" />
+                                <span t-field="line.account_id"/>
                             </td>
                             <td>
-                                <span t-field="line.name" />
+                                <span t-field="line.name"/>
+                            </td>
+                            <!--td>
+                                <span t-field="line.date_maturity"/>
+                            </td-->
+                            <td>
+                                <span t-field="line.analytic_account_id"/>
                             </td>
                             <td>
-                                <span t-field="line.date_maturity" />
+                                <span t-field="line.tax_ids"/>
                             </td>
                             <td>
-                                <span t-field="line.analytic_account_id" />
+                                <span t-field="line.debit"/>
                             </td>
                             <td>
-                                <span t-field="line.tax_ids" />
-                            </td>
-                            <td>
-                                <span t-field="line.debit" />
-                            </td>
-                            <td>
-                                <span t-field="line.credit" />
+                                <span t-field="line.credit"/>
                             </td>
                         </tr>
                         <t t-set="total" t-value="total + line.debit"/>
                         <t t-set="total1" t-value="total1 + line.credit"/>
                         </t>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td/><td/><td/><td/>
                             <td><strong>Total:</strong></td>
                             <td width="10%"><strong>
                                 <span><t t-esc="total"/></span>
@@ -105,6 +82,21 @@
                       </tr>
                     </tbody>
                 </table>
+
+                <div class="row" style="margin-top:30px">
+                    <div class="col-4" align="center" style="text-transform: uppercase;">
+                      _____<u><t t-esc="o.create_uid.name"/></u>_____<br/>
+                      ELABORADO POR
+                    </div>
+                    <div class="col-4" align="center">
+                      ______________________________________<br/>
+                      ACEPTADA, FIRMADA Y/O SELLO 
+                    </div>
+                    <div class="col-4" align="center">
+                      _________________________<br/>
+                      FECHA
+                    </div>
+                  </div>
               
                 
                
