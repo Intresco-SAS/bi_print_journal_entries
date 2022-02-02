@@ -9,7 +9,7 @@
                     <div class="oe_structure" />
 
                     <div id="journal_information">
-                        <table style="border-collapse: collapse;width: 100%;;border:1px solid black" class="table table-condensed">
+                        <table class="table table-bordered">
                             <tr>
                                 <td>
                                     <strong>Diario : </strong>
@@ -34,8 +34,7 @@
                         </table>
                     </div>
 
-                    <br />
-                    <table style="width: 100%;border:1px solid black" class="table table-sm">
+                    <table style="width: 100%" class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th>Cuenta</th>
